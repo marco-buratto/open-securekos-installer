@@ -17,7 +17,7 @@
     <property name="width_request">850</property>
     <property name="can_focus">False</property>
     <property name="border_width">6</property>
-    <property name="title" translatable="yes">Open Secure-K OS Installer - LumIT Labs</property>
+    <property name="title" translatable="yes">Resilient Linux Installer</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="default_width">1150</property>
@@ -71,7 +71,7 @@
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkImageMenuItem" id="aboutMenu">
-                        <property name="label">Open Secure-K OS Installer DEPLOYER_RELEASE</property>
+                        <property name="label">Resilient Linux Installer DEPLOYER_RELEASE</property>
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -165,46 +165,6 @@
                         <property name="margin_top">12</property>
                         <property name="margin_bottom">12</property>
                         <child>
-                          <object class="GtkBox" id="box10">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <child>
-                              <object class="GtkLabel" id="isoSelectLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_left">29</property>
-                                <property name="label" translatable="yes">System image:  </property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkFileChooserButton" id="imageChooser">
-                                <property name="width_request">290</property>
-                                <property name="height_request">-1</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="create_folders">False</property>
-                                <signal name="file-set" handler="onImageChooserFileSet" swapped="no"/>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkButtonBox" id="buttonbox2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -225,7 +185,7 @@
                             </child>
                             <child>
                               <object class="GtkEntry" id="encryptSecretEntry">
-                                <property name="width_request">290</property>
+                                <property name="width_request">700</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="margin_right">30</property>
@@ -251,7 +211,7 @@
                       <object class="GtkLabel" id="label1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Select image and persistence secret (if null, cleartext persistence will be set):  </property>
+                        <property name="label" translatable="yes">Type in the persistence secret; if null, cleartext persistence will be created:  </property>
                       </object>
                     </child>
                   </object>

@@ -62,6 +62,23 @@ class Filesystem:
 
 
     @staticmethod
+    def dirSize(folder):        
+        dSize = 0 
+
+        try:
+            for dirpath, dirnames, filenames in os.walk(folder):
+                for f in filenames:
+                    fp = os.path.join(dirpath, f)
+                    if not os.path.islink(fp): # skip if it is symbolic link.
+                        dSize += os.path.getsize(fp)
+        except Exception:
+            return 0
+
+        return dSize
+
+
+
+    @staticmethod
     def tmpMount(devicePartition):
         r = str(randint(1,9999))
         tempFolder = "/tmp/mnt__"+r
@@ -79,4 +96,33 @@ class Filesystem:
             return False
 
         return True
+
+
+
+    @staticmethod
+    def getSystemPartitionMountpoint():
+        getSystemPartitionMountpoint = ""
+
+        getSystemPartitionMountpointCmdln = "mount | grep iso9660 | grep live | awk '{print $3}'"
+        getSystemPartitionMountpointRun = Process.execute(getSystemPartitionMountpointCmdln)
+
+        if getSystemPartitionMountpointRun["success"]:
+            getSystemPartitionMountpoint = getSystemPartitionMountpointRun["output"]
+
+        return getSystemPartitionMountpoint
+
+
+
+    @staticmethod
+    def createIsoFile(sourceFolder):
+        isoFilename = ""
+
+        if Filesystem.fileExists("/root/resilient.iso"):
+            isoFilename = "/root/resilient.iso"
+        else:
+            createIsoFileCmdln = "xorrisofs -v -J -r -V RESILIENT_LINUX -o /tmp/resilient.iso "+sourceFolder
+            if Process.execute(createIsoFileCmdln)["success"]:
+                isoFilename = "/tmp/resilient.iso"
+
+        return isoFilename
 

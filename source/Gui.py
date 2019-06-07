@@ -18,7 +18,7 @@ class Gui:
     deviceXorrisoCompleted = False
 
     isoFile = ""
-    isoFileSize = 0
+    isoFileSize = ""
 
 
 
@@ -45,14 +45,19 @@ class Gui:
 
     def deploy(self, button):
         warnDialog = Gtk.MessageDialog(self.window,0,Gtk.MessageType.WARNING,Gtk.ButtonsType.OK_CANCEL,"Installation")
-        warnDialog.format_secondary_text("Installing the operating system onto all listed devices will delete previous content. Proceed?")
-        response = warnDialog.run()
+        warnDialog.format_secondary_text("Installing the operating system will delete previous content. Proceed?")
 
-        if response==Gtk.ResponseType.OK:
-            self.STATUS_WRITE = True
-            warnDialog.destroy()
+        # Get the Resilient Linux (first) system partition mountpoint - where kernel, initrd and filesystem.squashfs reside.
+        systemPartitionMountpoint = Filesystem.getSystemPartitionMountpoint() 
+        systemPartitionSize = int(Filesystem.dirSize(systemPartitionMountpoint) / 1024 / 1024) # MB.
 
-            if self.isoFile:
+        if systemPartitionMountpoint and systemPartitionSize:
+            response = warnDialog.run()
+
+            if response==Gtk.ResponseType.OK:
+                self.STATUS_WRITE = True
+                warnDialog.destroy()
+
                 # Kill open processes and delete logs. Disable write button. Clean progress bars' text.
                 System.processesKillAndClean(self.config['logorroic'])
                 button.set_sensitive(False)
@@ -63,6 +68,10 @@ class Gui:
                     Gtk.main_iteration_do(False)
 
                 self.progressbar.set_show_text(False)
+
+                # Create the isoFile for the write.
+                self.isoFile = Filesystem.createIsoFile(systemPartitionMountpoint)
+                self.isoFileSize = int(Filesystem.fileSize(self.isoFile) / 1024 / 1024) # MB.
 
                 devicesAssociativeArray = System.getDiskDevices()
                 for device,serial in devicesAssociativeArray:
@@ -200,19 +209,13 @@ class Gui:
                                 self.STATUS_WRITE_FINISHED = True
 
                                 dialog = Gtk.MessageDialog(self.window,0,Gtk.MessageType.INFO,Gtk.ButtonsType.OK,"Write process completed.")
-                                dialog.format_secondary_text("Open Secure-K OS deploy process finished, check device's status.")
+                                dialog.format_secondary_text("Install process finished, check device's status.")
                                 dialog.run()
                                 dialog.destroy()
 
                         break
-        else:
-            warnDialog.destroy()
-
-
-
-    def isoSelected(self, widget):
-        self.isoFile = "\""+widget.get_filename()+"\""
-        self.isoFileSize = int(Filesystem.fileSize(widget.get_filename()) / 1024 / 1024) # MB.
+            else:
+                warnDialog.destroy()
 
 
 
@@ -237,7 +240,6 @@ class Gui:
         # Connect GUI events (signals) to handlers.
         self.builder.connect_signals({
             "onExitMenuActivate": self.quitApp,
-            "onImageChooserFileSet": self.isoSelected,
             "onWriteButtonPressed": self.deploy,
 
             "onMainWindowDeleteEvent": self.quitApp,

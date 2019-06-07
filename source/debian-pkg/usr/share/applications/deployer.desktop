@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=Open Secure-K OS Deployer
-Exec=gksudo /usr/lib/open-securekos-deployer-DEPLOYER_MAJOR/deployer.sh
+Name=Resilient Linux Installer
+Exec=gksudo /usr/lib/resilientlinux-installer-DEPLOYER_MAJOR/deployer.sh
 Terminal=false
 Type=Application
 Icon=deployer

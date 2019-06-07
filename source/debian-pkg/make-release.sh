@@ -12,8 +12,8 @@ deployerRelease=$(echo $(cat deployer.release))
 deployerMajorVersion=$(echo $deployerRelease | awk -F. '{print $1}')
 
 # Definitions.
-workingFolder="open-securekos-hd-deployer_${deployerRelease}_all"
-deployerMainFolder="usr/lib/open-securekos-hd-deployer-${deployerMajorVersion}"
+workingFolder="resilientlinux-installer_${deployerRelease}_all"
+deployerMainFolder="usr/lib/resilientlinux-installer-${deployerMajorVersion}"
 deployerConfigFolder="etc"
 deployerIconFolder="usr/share/icons/hicolor/scalable/apps"
 deployerDesktopfileFolder="usr/share/applications"

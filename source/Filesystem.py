@@ -115,11 +115,14 @@ class Filesystem:
 
     @staticmethod
     def createIsoFile(sourceFolder):
-        isoFilename = "/tmp/resilient.iso"
+        if Filesystem.fileExists("/root/resilient.iso"):
+            isoFilename = "/root/resilient.iso"
+        else:
+            isoFilename = "/tmp/resilient.iso"
 
-        createIsoFileCmdln = "xorrisofs -v -J -r -V RESILIENT_LINUX -o "+isoFilename+" "+sourceFolder
-        if Process.execute(createIsoFileCmdln)["success"]:
-            return isoFilename
+            createIsoFileCmdln = "xorrisofs -v -J -r -V RESILIENT_LINUX -o "+isoFilename+" "+sourceFolder
+            if Process.execute(createIsoFileCmdln)["success"]:
+                return isoFilename
 
         return ""
 

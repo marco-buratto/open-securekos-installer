@@ -45,7 +45,7 @@ class Gui:
 
     def deploy(self, button):
         warnDialog = Gtk.MessageDialog(self.window,0,Gtk.MessageType.WARNING,Gtk.ButtonsType.OK_CANCEL,"Installation")
-        warnDialog.format_secondary_text("Installing the operating system onto all listed devices will delete previous content. Proceed?")
+        warnDialog.format_secondary_text("Installing the operating system will delete previous content. Proceed?")
 
         # Get the Resilient Linux (first) system partition mountpoint - where kernel, initrd and filesystem.squashfs reside.
         systemPartitionMountpoint = Filesystem.getSystemPartitionMountpoint() 
@@ -209,13 +209,13 @@ class Gui:
                                 self.STATUS_WRITE_FINISHED = True
 
                                 dialog = Gtk.MessageDialog(self.window,0,Gtk.MessageType.INFO,Gtk.ButtonsType.OK,"Write process completed.")
-                                dialog.format_secondary_text("Open Secure-K OS deploy process finished, check device's status.")
+                                dialog.format_secondary_text("Install process finished, check device's status.")
                                 dialog.run()
                                 dialog.destroy()
 
                         break
-        else:
-            warnDialog.destroy()
+            else:
+                warnDialog.destroy()
 
 
 

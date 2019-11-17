@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Resilient Linux USB Installer
+Exec=bash -c "xhost si:localuser:root; sudo /usr/lib/resilientlinux-usb-installer-DEPLOYER_MAJOR/deployer.sh"
+Terminal=false
+Type=Application
+Icon=deployer
+StartupNotify=true

@@ -23,4 +23,6 @@ Resilient Linux USB  Installer
 ==============================
 
 In the *source-usb* folder, the Resilient Linux USB Installer is stored. 
-**Resilient Linux USB Installer** is the deployment system for writing Resilient Linux ISO image onto a USB key instead on installing onto the hard drive.
+**Resilient Linux USB Installer** is the deployment system for writing Resilient Linux ISO image onto a USB key instead on installing onto the hard drive. 
+
+Just in case you need a persistent encrypted next-generation live operating system running on a USB key instead of hard drive installed one.

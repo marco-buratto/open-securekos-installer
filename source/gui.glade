@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
   <object class="GtkAdjustment" id="dmzSizer"/>
@@ -14,7 +14,7 @@
     <property name="stock">gtk-missing-image</property>
   </object>
   <object class="GtkWindow" id="mainWindow">
-    <property name="width_request">850</property>
+    <property name="width_request">600</property>
     <property name="can_focus">False</property>
     <property name="border_width">6</property>
     <property name="title" translatable="yes">Resilient Linux Installer</property>
@@ -22,6 +22,9 @@
     <property name="window_position">center</property>
     <property name="default_width">1150</property>
     <signal name="delete-event" handler="onMainWindowDeleteEvent" swapped="no"/>
+    <child>
+      <placeholder/>
+    </child>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
@@ -185,7 +188,7 @@
                             </child>
                             <child>
                               <object class="GtkEntry" id="encryptSecretEntry">
-                                <property name="width_request">700</property>
+                                <property name="width_request">500</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="margin_right">30</property>

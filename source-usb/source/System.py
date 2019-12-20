@@ -411,7 +411,7 @@ class System:
 
         if encryptionSecret:
             # Encrypted persistence partition.
-            encryptPersistencePartitionCmdln = "echo -n \""+encryptionSecret+"\" | cryptsetup --hash=sha512 --cipher=aes-xts-plain64 --key-size=512 luksFormat "+device+partitionNumber+" -"
+            encryptPersistencePartitionCmdln = "echo -n \""+encryptionSecret+"\" | cryptsetup --hash=sha512 --cipher=aes-xts-plain64 --key-size=512 --type=luks1 luksFormat "+device+partitionNumber+" -"
             openPersistencePartitionCmdln = "echo -n \""+encryptionSecret+"\" | cryptsetup luksOpen "+device+partitionNumber+" encrypted_"+r+device[-3:]+" -"
             formatAndLabelPersistencePartitionCmdln = "mkfs.ext4 -i 8192 /dev/mapper/encrypted_"+r+device[-3:]+" && e2label /dev/mapper/encrypted_"+r+device[-3:]+" persistence"
             closePersistencePartitionCmdln = "/sbin/cryptsetup luksClose /dev/mapper/encrypted_"+r+device[-3:]

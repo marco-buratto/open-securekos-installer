@@ -12,9 +12,9 @@ class Filesystem:
 
 
     @staticmethod
-    def readFile(filename):         
+    def readFile(filename):
         try:
-            f = open(filename,"r")        
+            f = open(filename,"r")
             fileContent = f.read()
             f.close()
         except Exception:
@@ -27,7 +27,7 @@ class Filesystem:
     @staticmethod
     def writeFile(filename,content):
         try:
-            f = open(filename,"w")        
+            f = open(filename,"w")
             f.write(content+"\n")
             f.close()
 
@@ -51,7 +51,7 @@ class Filesystem:
 
 
     @staticmethod
-    def fileSize(filename):         
+    def fileSize(filename):
         try:
             fSize = os.path.getsize(filename)
         except Exception:
@@ -62,8 +62,8 @@ class Filesystem:
 
 
     @staticmethod
-    def dirSize(folder):        
-        dSize = 0 
+    def dirSize(folder):
+        dSize = 0
 
         try:
             for dirpath, dirnames, filenames in os.walk(folder):
@@ -120,7 +120,7 @@ class Filesystem:
         if Filesystem.fileExists("/resilientlinux.iso"):
             isoFilename = "/resilientlinux.iso"
         else:
-            createIsoFileCmdln = "xorrisofs -v -J -r -V RESILIENT_LINUX -o /tmp/resilientlinux.iso "+sourceFolder
+            createIsoFileCmdln = "xorrisofs -v -J -r -V RESILIENT_LINUX -o /resilientlinux.iso "+sourceFolder
             if Process.execute(createIsoFileCmdln)["success"]:
                 isoFilename = "/resilientlinux.iso"
 
